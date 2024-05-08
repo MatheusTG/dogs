@@ -21,6 +21,7 @@
 .login {
   color: #333;
   display: flex;
+  user-select: none;
 }
 
 .login::after {
