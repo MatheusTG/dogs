@@ -1,9 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-
-const contador = () => 0;
+import photo from './photo';
 
 const store = configureStore({
-  reducer: { contador },
+  reducer: { photo },
   middleware: (getDefaultMiddleware) => [...getDefaultMiddleware()],
 });
 
