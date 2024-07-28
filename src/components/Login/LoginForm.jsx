@@ -3,29 +3,36 @@ import { Link } from 'react-router-dom';
 import Input from '../Forms/Input';
 import Button from '../Forms/Button';
 import useForm from '../../Hooks/useForm';
-import { UserContext } from '../../UserContext';
 import Error from '../Helper/Error';
 import styles from './LoginForm.module.css';
 import stylesBtn from '../Forms/Button.module.css';
 import Head from '../Helper/Head';
+import { useDispatch, useSelector } from 'react-redux';
+import { userLogin } from '../../store/user';
 
 const LoginForm = () => {
   const username = useForm();
   const password = useForm();
+  const dispatch = useDispatch();
 
-  const { userLogin, error, loading } = React.useContext(UserContext);
+  const token = useSelector((state) => state.token);
+  const user = useSelector((state) => state.user);
+  const loading = token.loading || user.loading;
+  const error = token.error || user.error;
 
   async function handleSubmit(event) {
     event.preventDefault();
 
     if (username.validate() && password.validate()) {
-      userLogin(username.value, password.value);
+      dispatch(
+        userLogin({ username: username.value, password: password.value })
+      );
     }
   }
 
   return (
     <section className="animeLeft">
-      <Head title='Crie sua conta' />
+      <Head title="Crie sua conta" />
       <h1 className="title">Login</h1>
       <form className={styles.form} onSubmit={handleSubmit}>
         <Input label="Usuário" type="text" name="usename" {...username} />

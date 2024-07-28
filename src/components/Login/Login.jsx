@@ -5,13 +5,14 @@ import LoginCreate from './LoginCreate';
 import LoginPasswordLost from './LoginPasswordLost';
 import LoginPasswordReset from './LoginPasswordReset';
 import { UserContext } from '../../UserContext';
-import styles from './Login.module.css'
+import styles from './Login.module.css';
 import NotFound from '../NotFound';
+import { useSelector } from 'react-redux';
 
 const Login = () => {
-  const { login } = React.useContext(UserContext);
+  const { data } = useSelector((state) => state.user);
 
-  if (login == true) return <Navigate to='/conta' />
+  if (data) return <Navigate to="/conta" />;
   return (
     <section className={styles.login}>
       <div className={styles.forms}>
