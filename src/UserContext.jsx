@@ -1,10 +1,15 @@
+// O código abaico não está mais sendo usado após a refatoração
+// emprementando o Redux, mas será mantido para caso seja necessário
+
 import React from 'react';
 import { TOKEN_POST, TOKEN_VALIDATE_POST, USER_GET } from '../api';
 import { useNavigate } from 'react-router-dom';
 
-export const UserContext = React.createContext();
+// export
+const UserContext = React.createContext();
 
-export const UserStorage = ({ children }) => {
+// export
+const UserStorage = ({ children }) => {
   const [data, setData] = React.useState(null);
   const [login, setLogin] = React.useState(null);
   const [loading, setLoading] = React.useState(false);

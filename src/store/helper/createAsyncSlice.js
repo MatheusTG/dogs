@@ -31,6 +31,11 @@ export function createAsyncSlice(config) {
         state.loading = false;
         state.error = action.payload;
       },
+      resetState(state) {
+        state.loading = false;
+        state.data = null;
+        state.error = null;
+      },
       ...config.reducers,
     },
   });
